@@ -31,7 +31,7 @@ Avec cet outil, vous pouvez facilement créer un CV professionnel, le prévisual
 
 ```bash
 git clone https://github.com/gery-guedegbe/Resume-Builder.git
-cd cv-builder
+cd resume_builder
 ```
 
 ### 2️⃣ **Installer les dépendances**
