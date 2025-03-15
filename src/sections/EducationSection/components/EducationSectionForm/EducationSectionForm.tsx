@@ -21,18 +21,17 @@ const EducationSectionForm: React.FC = () => {
   const { setIsEditing, editingData } = useFormContext();
   const { userData, setUserData } = useGlobalContext();
 
-  const [educationData, setEducationData] = useState<Education>(
-    editingData || {
-      id: uuidv4(),
-      degree: "",
-      institution: "",
-      startDate: "",
-      endDate: "",
-      location: "",
-      country: "",
-      achievements: "",
-    },
-  );
+  const [educationData, setEducationData] = useState<Education>({
+    id: uuidv4(),
+    degree: "",
+    institution: "",
+    startDate: "",
+    endDate: "",
+    location: "",
+    country: "",
+    achievements: "",
+    ...editingData,
+  });
 
   const initialContent = ContentState.createFromText(
     educationData.achievements,
@@ -100,10 +99,10 @@ const EducationSectionForm: React.FC = () => {
 
   useEffect(() => {
     if (editingData) {
-      setEducationData(editingData);
+      setEducationData(educationData);
       setEditorState(
         EditorState.createWithContent(
-          ContentState.createFromText(editingData.achievements || ""),
+          ContentState.createFromText(educationData.achievements || ""),
         ),
       );
     }
