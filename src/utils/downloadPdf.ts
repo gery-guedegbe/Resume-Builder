@@ -7,7 +7,7 @@ import { jsPDF } from "jspdf";
  * @param {string} fileName - Nom du fichier PDF à générer.
  */
 
-export const downloadPdf = async (elementId, fileName) => {
+export const downloadPdf = async (elementId: string, fileName: string) => {
   const element = document.getElementById(elementId);
 
   if (!element) {

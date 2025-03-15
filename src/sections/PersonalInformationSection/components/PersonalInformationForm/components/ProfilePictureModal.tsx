@@ -4,6 +4,7 @@ import "cropperjs/dist/cropper.css";
 import { FaCheck } from "react-icons/fa6";
 import { MdOutlineDelete } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
+import type { ReactCropperElement } from "react-cropper";
 
 interface ProfilePictureModalProps {
   onClose: () => void;
@@ -14,7 +15,7 @@ const ProfilePictureModal: React.FC<ProfilePictureModalProps> = ({
   onClose,
   onImageChange,
 }) => {
-  const cropperRef = useRef<HTMLImageElement>(null);
+  const cropperRef = useRef<ReactCropperElement>(null);
   const [image, setImage] = useState<string | null>(null);
 
   // Gère le chargement d'une nouvelle image
@@ -32,7 +33,8 @@ const ProfilePictureModal: React.FC<ProfilePictureModalProps> = ({
     if (cropperRef.current && cropperRef.current.cropper) {
       const croppedImage = cropperRef.current.cropper
         .getCroppedCanvas()
-        .toDataURL();
+        ?.toDataURL();
+
       onImageChange(croppedImage); // Passe l'image recadrée au parent
       onClose();
     }

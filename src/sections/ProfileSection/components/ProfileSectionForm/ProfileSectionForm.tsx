@@ -56,7 +56,7 @@ const ProfileSectionForm: React.FC = () => {
       title="Edit Profile"
       onSave={handleSave}
       onCancel={handleCancel}
-      onDelete={editingData ? handleDelete : undefined}
+      onDelete={editingData ? handleDelete : () => {}}
     >
       <div className="flex flex-col gap-4">
         <Editor
