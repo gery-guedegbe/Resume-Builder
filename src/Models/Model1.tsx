@@ -157,6 +157,23 @@ const Model1: React.FC = () => {
               })}
             </ul>
           </div>
+
+          {userData.hobbies && (
+            <div className="avoid-break flex flex-col gap-4">
+              <h2 className="text-2xl font-semibold">Hobbies</h2>
+
+              {userData.hobbies.map((hob) => (
+                <ul className="list-inside space-y-2 text-sm font-normal text-custom-model1-color">
+                  <li
+                    key={hob.id}
+                    className="text-sm font-normal text-custom-model1-color"
+                  >
+                    {hob.hobbie}
+                  </li>
+                </ul>
+              ))}
+            </div>
+          )}
         </div>
 
         <div className="absolute left-[51%] top-0 z-0 h-full border-l border-custom-model1-color"></div>

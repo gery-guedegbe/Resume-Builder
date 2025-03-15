@@ -16,7 +16,7 @@ const SkillSectionForm: React.FC = () => {
   const { userData, setUserData } = useGlobalContext();
 
   const [skillData, setSkillData] = useState<Skill>(
-    editingData || {
+    (editingData as Skill) || {
       id: uuidv4(),
       skill: "",
       level: "",

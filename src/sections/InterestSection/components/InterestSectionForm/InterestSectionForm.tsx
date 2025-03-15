@@ -14,7 +14,7 @@ const InterestSectionForm: React.FC = () => {
   const { userData, setUserData } = useGlobalContext();
 
   const [interestData, setInterestData] = useState<Hobbie>(
-    editingData || {
+    (editingData as Hobbie) || {
       id: uuidv4(),
       hobbie: "",
     },

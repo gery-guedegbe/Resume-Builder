@@ -24,7 +24,7 @@ const ProfessionalExperienceForm: React.FC = () => {
 
   const [professionalExperience, setProfessionalExperience] =
     useState<Experience>(
-      editingData || {
+      (editingData as Experience) || {
         id: uuidv4(),
         jobTitle: "",
         company: "",
@@ -114,10 +114,12 @@ const ProfessionalExperienceForm: React.FC = () => {
   // Mettre à jour l'état de l'éditeur lorsque `editingData` change
   useEffect(() => {
     if (editingData) {
-      setProfessionalExperience(editingData);
+      setProfessionalExperience(professionalExperience);
       setEditorState(
         EditorState.createWithContent(
-          ContentState.createFromText(editingData.responsibilities || ""),
+          ContentState.createFromText(
+            professionalExperience.responsibilities || "",
+          ),
         ),
       );
     }

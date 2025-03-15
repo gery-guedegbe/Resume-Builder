@@ -9,7 +9,7 @@ const ProfileSectionView: React.FC = () => {
   const { userData } = useGlobalContext();
 
   const handleEdit = () => {
-    setEditingData(userData.summary || "");
+    setEditingData({ summary: userData.summary || "" });
     setIsEditing((prev) => ({ ...prev, summary: true }));
   };
 

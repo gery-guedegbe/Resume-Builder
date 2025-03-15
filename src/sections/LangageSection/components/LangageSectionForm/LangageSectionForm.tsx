@@ -16,7 +16,7 @@ const LangageSectionForm: React.FC = () => {
   const { userData, setUserData } = useGlobalContext();
 
   const [languageData, setLanguageData] = useState<Language>(
-    editingData || {
+    (editingData as Language) || {
       id: uuidv4(),
       language: "",
       level: "",
