@@ -7,8 +7,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<ChooseModelPage />} />
-        <Route path="create-cv" element={<MainLayout />} />
+        <Route path="/" element={<MainLayout />} />
       </Routes>
     </BrowserRouter>
   );
