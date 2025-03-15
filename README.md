@@ -1,11 +1,11 @@
-# 📝 CV Builder - Créez et Téléchargez votre CV en PDF 🚀
+# 📝 CV Builder - Créez et Téléchargez votre CV en PDF 
 
 Un générateur de CV en ligne inspiré de [FlowCV](https://flowcv.com/), développé avec **React.js**, **Tailwind CSS**, **TypeScript**, **jsPDF** et **html2canvas**.  
 Avec cet outil, vous pouvez facilement créer un CV professionnel, le prévisualiser en temps réel et le télécharger au format **PDF**.
 
 ---
 
-## ✨ Fonctionnalités
+## Fonctionnalités
 
 ✅ **Formulaire dynamique** : Remplissez vos informations personnelles et professionnelles facilement.  
 ✅ **Prévisualisation instantanée** : Visualisez les modifications en direct sans recharger la page.  
@@ -15,7 +15,7 @@ Avec cet outil, vous pouvez facilement créer un CV professionnel, le prévisual
 
 ---
 
-## 🚀 Technologies utilisées
+## Technologies utilisées
 
 - **React.js** - Interface utilisateur réactive et dynamique
 - **TypeScript** - Code robuste et sécurisé
@@ -30,7 +30,7 @@ Avec cet outil, vous pouvez facilement créer un CV professionnel, le prévisual
 ### 1️⃣ **Cloner le projet**
 
 ```bash
-git clone https://github.com/ton-repo/cv-builder.git
+git clone https://github.com/gery-guedegbe/Resume-Builder.git
 cd cv-builder
 ```
 
