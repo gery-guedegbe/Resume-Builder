@@ -1,25 +1,44 @@
 import React from "react";
 import { IoEarth } from "react-icons/io5";
-import FormLayout from "../../../../components/FormLayout";
+import FormLayout from "../../../../components/FormLayout.js";
 import { RxDragHandleDots2 } from "react-icons/rx";
-import { useGlobalContext } from "../../../../context/GlobalContext";
-import { useFormContext } from "../../../../context/FormContext";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { useGlobalContext } from "../../../../context/GlobalContext.js";
+import { useFormContext } from "../../../../context/FormContext.js";
+import {
+  DragDropContext,
+  Draggable,
+  Droppable,
+  DropResult,
+} from "react-beautiful-dnd";
+
+interface Language {
+  id: string;
+  language: string;
+  level: string;
+  numericValue: number;
+}
+
+interface UserData {
+  languages?: Language[];
+}
 
 const LangageSectionView = () => {
   const { setIsEditing, setEditingData } = useFormContext();
   const { userData, setUserData } = useGlobalContext();
 
-  const handleDragEnd = (result: any) => {
+  const handleDragEnd = (result: DropResult) => {
     if (!result.destination) return;
 
     const reorderedLanguages = Array.from(userData.languages);
     const [removed] = reorderedLanguages.splice(result.source.index, 1);
     reorderedLanguages.splice(result.destination.index, 0, removed);
-    setUserData((prev) => ({ ...prev, languages: reorderedLanguages }));
+    setUserData((prev: UserData) => ({
+      ...prev,
+      languages: reorderedLanguages,
+    }));
   };
 
-  const handleEditLanguages = (languages: any) => {
+  const handleEditLanguages = (languages: Language) => {
     setEditingData(languages);
     setIsEditing((prev) => ({ ...prev, languages: true }));
   };
@@ -34,7 +53,7 @@ const LangageSectionView = () => {
               ref={provided.innerRef}
               className="flex w-full flex-col items-start gap-4"
             >
-              {userData.languages.map((lang, index) => (
+              {userData.languages.map((lang: Language, index: number) => (
                 <Draggable
                   key={lang.id}
                   draggableId={lang.id.toString()}

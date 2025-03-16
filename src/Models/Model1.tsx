@@ -1,7 +1,7 @@
 import React from "react";
 import { QRCodeSVG } from "qrcode.react";
 import { GoDotFill } from "react-icons/go";
-import { useGlobalContext } from "../context/GlobalContext";
+import { useGlobalContext } from "../context/GlobalContext.js";
 
 // Composant fonctionnel pour afficher le modèle
 const Model1: React.FC = () => {

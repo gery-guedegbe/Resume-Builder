@@ -1,17 +1,18 @@
 import React, { useState } from "react";
-import { useFormContext } from "../../../../context/FormContext";
-import EditableFormLayout from "../../../../layouts/EditableFormLayout";
-import { useGlobalContext } from "../../../../context/GlobalContext";
-import ProfilePicture from "./components/ProfilePicture";
-import InfosSection from "./components/InfosSection";
-import LinkSection from "./components/LinkSection";
+import { useFormContext } from "../../../../context/FormContext.js";
+import EditableFormLayout from "../../../../layouts/EditableFormLayout.js";
+import { useGlobalContext } from "../../../../context/GlobalContext.js";
+import { UserData } from "../../../../types/userDataTypes.js";
+import ProfilePicture from "./components/ProfilePicture.js";
+import InfosSection from "./components/InfosSection.js";
+import LinkSection from "./components/LinkSection.js";
 
 const PersonalInformationForm: React.FC = () => {
   const { setIsEditing } = useFormContext();
   const { userData, setUserData } = useGlobalContext();
-  const [personalInformation, setPersonalInformation] = useState(
-    userData.personalInformation,
-  );
+  const [personalInformation, setPersonalInformation] = useState<
+    UserData["personalInformation"]
+  >(userData.personalInformation);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -22,7 +23,7 @@ const PersonalInformationForm: React.FC = () => {
   };
 
   const handleSave = () => {
-    setUserData((prev) => ({
+    setUserData((prev: UserData) => ({
       ...prev,
       personalInformation: {
         ...prev.personalInformation,
@@ -68,7 +69,7 @@ const PersonalInformationForm: React.FC = () => {
       instagram: "",
     };
 
-    setUserData((prev) => ({
+    setUserData((prev: UserData) => ({
       ...prev,
       personalInformation: emptyData,
     }));

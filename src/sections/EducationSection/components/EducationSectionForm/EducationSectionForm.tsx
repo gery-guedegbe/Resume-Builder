@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { useFormContext } from "../../../../context/FormContext";
-import { useGlobalContext } from "../../../../context/GlobalContext";
-import EditableFormLayout from "../../../../layouts/EditableFormLayout";
+import { useFormContext } from "../../../../context/FormContext.js";
+import { useGlobalContext } from "../../../../context/GlobalContext.js";
+import EditableFormLayout from "../../../../layouts/EditableFormLayout.js";
 import { Editor } from "react-draft-wysiwyg";
 import { ContentState, EditorState } from "draft-js";
 
@@ -15,6 +15,10 @@ interface Education {
   location: string;
   country: string;
   achievements: string;
+}
+
+interface UserData {
+  education?: Education[];
 }
 
 const EducationSectionForm: React.FC = () => {
@@ -53,16 +57,16 @@ const EducationSectionForm: React.FC = () => {
   const handleSave = () => {
     const achievements = extractEditorContent(editorState);
 
-    setUserData((prev) => {
+    setUserData((prev: UserData) => {
       const existingEducation = prev.education || [];
       const isEditingExisting = existingEducation.some(
-        (edu) => edu.id === educationData.id,
+        (edu: Education) => edu.id === educationData.id,
       );
 
       return {
         ...prev,
         education: isEditingExisting
-          ? existingEducation.map((edu) =>
+          ? existingEducation.map((edu: Education) =>
               edu.id === educationData.id
                 ? { ...educationData, achievements }
                 : edu,
@@ -79,10 +83,10 @@ const EducationSectionForm: React.FC = () => {
   };
 
   const handleDelete = () => {
-    setUserData((prev) => ({
+    setUserData((prev: UserData) => ({
       ...prev,
       education: (prev.education || []).filter(
-        (edu) => edu.id !== educationData.id,
+        (edu: Education) => edu.id !== educationData.id,
       ),
     }));
 

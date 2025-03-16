@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { TbPhotoEdit } from "react-icons/tb";
 
-import ProfilePictureModal from "./ProfilePictureModal";
+import ProfilePictureModal from "./ProfilePictureModal.js";
 import default_picture from "../../../../../assets/images/camera.png";
 
 interface ProfilePictureProps {

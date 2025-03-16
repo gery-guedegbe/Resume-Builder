@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaPlus } from "react-icons/fa6";
-import DynamicField from "../../../../../components/DynamicField";
+import DynamicField from "../../../../../components/DynamicField.js";
 
 type LinkSectionProps = {
   personalInformation: Record<string, string>;
@@ -21,14 +21,24 @@ const LinkSection: React.FC<LinkSectionProps> = ({
     const fieldName = label.replace(/\s+/g, "_").toLowerCase();
     if (!activeFields.includes(fieldName)) {
       setActiveFields((prev) => [...prev, fieldName]);
-      handleInputChange({ target: { name: fieldName, value: "" } } as any);
+
+      const fakeEvent = {
+        target: { name: fieldName, value: "" },
+      } as React.ChangeEvent<HTMLInputElement>;
+
+      handleInputChange(fakeEvent);
     }
   };
 
   // Supprimer un champ dynamique
   const handleRemoveLink = (name: string) => {
     setActiveFields((prev) => prev.filter((field) => field !== name));
-    handleInputChange({ target: { name, value: undefined } } as any);
+
+    const fakeEvent = {
+      target: { name, value: "" }, // Utilise une chaîne vide pour clearer la valeur
+    } as React.ChangeEvent<HTMLInputElement>;
+
+    handleInputChange(fakeEvent);
   };
 
   // Options disponibles

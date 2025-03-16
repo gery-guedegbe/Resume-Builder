@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { useFormContext } from "../../../../context/FormContext";
-import { useGlobalContext } from "../../../../context/GlobalContext";
-import EditableFormLayout from "../../../../layouts/EditableFormLayout";
+import { useFormContext } from "../../../../context/FormContext.js";
+import { useGlobalContext } from "../../../../context/GlobalContext.js";
+import EditableFormLayout from "../../../../layouts/EditableFormLayout.js";
 import { Editor } from "react-draft-wysiwyg";
 import { ContentState, EditorState } from "draft-js";
 
@@ -15,6 +15,10 @@ interface Experience {
   city: string;
   country: string;
   responsibilities: string;
+}
+
+interface UserData {
+  experience?: Experience[];
 }
 
 const ProfessionalExperienceForm: React.FC = () => {
@@ -56,18 +60,20 @@ const ProfessionalExperienceForm: React.FC = () => {
   const handleSave = () => {
     const responsibilities = extractEditorContent(editorState);
 
-    setUserData((prev) => {
-      const isExisting = prev.experience.some(
+    setUserData((prev: UserData) => {
+      const experiences = prev.experience ?? []; // 🔹 Définit une valeur par défaut vide si undefined
+
+      const isExisting = experiences.some(
         (exp) => exp.id === professionalExperience.id,
       );
 
       const updatedExperience = isExisting
-        ? prev.experience.map((exp) =>
+        ? experiences.map((exp) =>
             exp.id === professionalExperience.id
               ? { ...professionalExperience, responsibilities }
               : exp,
           )
-        : [...prev.experience, { ...professionalExperience, responsibilities }];
+        : [...experiences, { ...professionalExperience, responsibilities }];
 
       return {
         ...prev,
@@ -83,10 +89,10 @@ const ProfessionalExperienceForm: React.FC = () => {
   };
 
   const handleDelete = () => {
-    setUserData((prev) => {
-      const updatedExperience = prev.experience.filter(
-        (exp) => exp.id !== professionalExperience.id,
-      );
+    setUserData((prev: UserData) => {
+      const updatedExperience = prev.experience
+        ? prev.experience.filter((exp) => exp.id !== professionalExperience.id)
+        : [];
 
       return {
         ...prev,

@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { EditorState, ContentState } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"; // Import des styles nécessaires
-import { useFormContext } from "../../../../context/FormContext";
-import { useGlobalContext } from "../../../../context/GlobalContext";
-import EditableFormLayout from "../../../../layouts/EditableFormLayout";
+import { useFormContext } from "../../../../context/FormContext.js";
+import { useGlobalContext } from "../../../../context/GlobalContext.js";
+import EditableFormLayout from "../../../../layouts/EditableFormLayout.js";
+import { UserData } from "../../../../types/userDataTypes.js"; // 🔹 Assure-toi d'importer le bon type
 
 const ProfileSectionForm: React.FC = () => {
   const { isEditing, setIsEditing, editingData, setEditingData } =
@@ -28,27 +29,36 @@ const ProfileSectionForm: React.FC = () => {
     const content = editorState.getCurrentContent();
     const summary = content.getPlainText().trim();
 
-    setUserData((prev) => ({
+    setUserData((prev: UserData) => ({
       ...prev,
       summary, // Ajoute le résumé nettoyé dans les données utilisateur
     }));
 
     setEditingData(null);
-    setIsEditing((prev) => ({ ...prev, summary: false }));
+    setIsEditing((prev: Record<string, boolean>) => ({
+      ...prev,
+      summary: false,
+    }));
   };
 
   const handleCancel = () => {
     setEditingData(null);
-    setIsEditing((prev) => ({ ...prev, summary: false }));
+    setIsEditing((prev: Record<string, boolean>) => ({
+      ...prev,
+      summary: false,
+    }));
   };
 
   const handleDelete = () => {
-    setUserData((prev) => ({
+    setUserData((prev: UserData) => ({
       ...prev,
       summary: "", // Efface complètement le résumé
     }));
     setEditingData(null);
-    setIsEditing((prev) => ({ ...prev, summary: false }));
+    setIsEditing((prev: Record<string, boolean>) => ({
+      ...prev,
+      summary: false,
+    }));
   };
 
   return (

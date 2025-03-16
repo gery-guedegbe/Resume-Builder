@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { useGlobalContext } from "../../../../context/GlobalContext";
-import { useFormContext } from "../../../../context/FormContext";
-import EditableFormLayout from "../../../../layouts/EditableFormLayout";
+import { useGlobalContext } from "../../../../context/GlobalContext.js";
+import { useFormContext } from "../../../../context/FormContext.js";
+import EditableFormLayout from "../../../../layouts/EditableFormLayout.js";
 
 interface Language {
   id: string;
   language: string;
   level: string;
   numericValue: number;
+}
+
+interface UserData {
+  languages?: Language[];
 }
 
 const LangageSectionForm: React.FC = () => {
@@ -43,7 +47,7 @@ const LangageSectionForm: React.FC = () => {
   };
 
   const handleSave = () => {
-    setUserData((prev) => {
+    setUserData((prev: UserData) => {
       const existingLanguages = prev.languages || [];
       const isEditing = !!editingData;
 
@@ -70,7 +74,7 @@ const LangageSectionForm: React.FC = () => {
   };
 
   const handleDelete = () => {
-    setUserData((prev) => ({
+    setUserData((prev: UserData) => ({
       ...prev,
       languages: (prev.languages || []).filter(
         (lang) => lang.id !== languageData.id,

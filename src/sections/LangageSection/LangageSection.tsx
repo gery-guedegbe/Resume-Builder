@@ -1,7 +1,7 @@
 import React from "react";
-import { useFormContext } from "../../context/FormContext";
-import LangageSectionForm from "./components/LangageSectionForm/LangageSectionForm";
-import LangageSectionView from "./components/LangageSectionView/LangageSectionView";
+import { useFormContext } from "../../context/FormContext.js";
+import LangageSectionForm from "./components/LangageSectionForm/LangageSectionForm.js";
+import LangageSectionView from "./components/LangageSectionView/LangageSectionView.js";
 
 const LangageSection = () => {
   const { isEditing } = useFormContext();

@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import ChooseModelPage from "./pages/ChooseModelPage";
-import MainLayout from "./layouts/MainLayout";
+import MainLayout from "./layouts/MainLayout.js";
 
 const App = () => {
   return (

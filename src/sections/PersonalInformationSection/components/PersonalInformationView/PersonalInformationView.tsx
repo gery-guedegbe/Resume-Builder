@@ -1,6 +1,6 @@
 import React from "react";
-import { useFormContext } from "../../../../context/FormContext";
-import { useGlobalContext } from "../../../../context/GlobalContext";
+import { useFormContext } from "../../../../context/FormContext.js";
+import { useGlobalContext } from "../../../../context/GlobalContext.js";
 
 import { FaRegEnvelope } from "react-icons/fa";
 import { LuPhoneCall } from "react-icons/lu";
@@ -30,26 +30,26 @@ const ProfileSectionView: React.FC = () => {
           {userData.personalInformation.fullName || "Full name"}
         </h2>
 
-        <p className="text-custom-grey text-base font-semibold leading-none">
+        <p className="text-base font-semibold leading-none text-custom-grey">
           {userData.personalInformation.jobTitle || "Job title"}
         </p>
       </div>
 
       <div className="flex w-full items-center justify-between space-y-1 opacity-90">
         <ul className="flex flex-col items-start gap-3">
-          <li className="text-custom-grey flex items-center gap-2 text-sm font-medium">
+          <li className="flex items-center gap-2 text-sm font-medium text-custom-grey">
             <FaRegEnvelope size={18} />
 
             <h3>{userData.personalInformation.email || "Email"}</h3>
           </li>
 
-          <li className="text-custom-grey flex items-center gap-2 text-sm font-medium">
+          <li className="flex items-center gap-2 text-sm font-medium text-custom-grey">
             <LuPhoneCall size={18} />
 
             <h3>{userData.personalInformation.phone || "Phone"}</h3>
           </li>
 
-          <li className="text-custom-grey flex items-center gap-2 text-sm font-medium">
+          <li className="flex items-center gap-2 text-sm font-medium text-custom-grey">
             <IoLocationOutline size={20} />
 
             <h3>{userData.personalInformation.address || "Address"}</h3>

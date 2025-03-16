@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { useFormContext } from "../../../../context/FormContext";
-import { useGlobalContext } from "../../../../context/GlobalContext";
-import EditableFormLayout from "../../../../layouts/EditableFormLayout";
+import { useFormContext } from "../../../../context/FormContext.js";
+import { useGlobalContext } from "../../../../context/GlobalContext.js";
+import EditableFormLayout from "../../../../layouts/EditableFormLayout.js";
 
 interface Skill {
   id: string;
   skill: string;
   level: string;
   numericValue: number;
+}
+
+interface UserData {
+  skills?: Skill[];
 }
 
 const SkillSectionForm: React.FC = () => {
@@ -49,7 +53,7 @@ const SkillSectionForm: React.FC = () => {
   };
 
   const handleSave = () => {
-    setUserData((prev) => {
+    setUserData((prev: UserData) => {
       const existingSkills = prev.skills || [];
       const updatedSkills = existingSkills.map((skill) =>
         skill.id === skillData.id ? { ...skill, ...skillData } : skill,
@@ -72,7 +76,7 @@ const SkillSectionForm: React.FC = () => {
   };
 
   const handleDelete = () => {
-    setUserData((prev) => ({
+    setUserData((prev: UserData) => ({
       ...prev,
       skills: (prev.skills || []).filter((skill) => skill.id !== skillData.id),
     }));

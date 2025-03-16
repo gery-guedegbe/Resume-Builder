@@ -5,7 +5,7 @@ import {
   FaMobile,
   FaLocationDot,
 } from "react-icons/fa6";
-import { useGlobalContext } from "../context/GlobalContext";
+import { useGlobalContext } from "../context/GlobalContext.js";
 
 const Model3 = () => {
   const { userData } = useGlobalContext();

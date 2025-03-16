@@ -1,25 +1,48 @@
 import React from "react";
 import { RiGraduationCapLine } from "react-icons/ri";
-import FormLayout from "../../../../components/FormLayout";
+import FormLayout from "../../../../components/FormLayout.js";
 import { RxDragHandleDots2 } from "react-icons/rx";
-import { useGlobalContext } from "../../../../context/GlobalContext";
-import { useFormContext } from "../../../../context/FormContext";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { useGlobalContext } from "../../../../context/GlobalContext.js";
+import { useFormContext } from "../../../../context/FormContext.js";
+import {
+  DragDropContext,
+  Draggable,
+  Droppable,
+  DropResult,
+} from "react-beautiful-dnd";
+
+interface Education {
+  id: string;
+  degree: string;
+  institution: string;
+  startDate: string;
+  endDate: string;
+  location: string;
+  country: string;
+  achievements: string;
+}
+
+interface UserData {
+  education?: Education[];
+}
 
 const EducationSectionView = () => {
   const { setIsEditing, setEditingData } = useFormContext();
   const { userData, setUserData } = useGlobalContext();
 
-  const handleDragEnd = (result: any) => {
+  const handleDragEnd = (result: DropResult) => {
     if (!result.destination) return;
 
     const reorderedEducation = Array.from(userData.education);
     const [removed] = reorderedEducation.splice(result.source.index, 1);
     reorderedEducation.splice(result.destination.index, 0, removed);
-    setUserData((prev) => ({ ...prev, education: reorderedEducation }));
+    setUserData((prev: UserData) => ({
+      ...prev,
+      education: reorderedEducation,
+    }));
   };
 
-  const handleEditEducation = (education: any) => {
+  const handleEditEducation = (education: Education) => {
     setEditingData(education);
     setIsEditing((prev) => ({ ...prev, education: true }));
   };
@@ -38,7 +61,7 @@ const EducationSectionView = () => {
               ref={provided.innerRef}
               className="flex w-full flex-col items-start gap-4"
             >
-              {userData.education.map((edu, index) => (
+              {userData.education.map((edu: Education, index: number) => (
                 <Draggable
                   key={edu.id}
                   draggableId={edu.id.toString()}
@@ -49,7 +72,7 @@ const EducationSectionView = () => {
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
                       ref={provided.innerRef}
-                      className="border-custom-grey/15 flex w-full items-center gap-3 opacity-70 hover:opacity-90"
+                      className="flex w-full items-center gap-3 border-custom-grey/15 opacity-70 hover:opacity-90"
                       onClick={() => handleEditEducation(edu)}
                     >
                       <RxDragHandleDots2 size={26} />

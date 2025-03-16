@@ -1,6 +1,6 @@
 import React from "react";
 
-import Model1 from "../Models/Model1";
+import Model1 from "../Models/Model1.js";
 
 const PreviewCV = () => {
   return (

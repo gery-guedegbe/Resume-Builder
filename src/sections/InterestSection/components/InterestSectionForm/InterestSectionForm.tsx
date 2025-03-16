@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { useFormContext } from "../../../../context/FormContext";
-import { useGlobalContext } from "../../../../context/GlobalContext";
-import EditableFormLayout from "../../../../layouts/EditableFormLayout";
+import { useFormContext } from "../../../../context/FormContext.js";
+import { useGlobalContext } from "../../../../context/GlobalContext.js";
+import EditableFormLayout from "../../../../layouts/EditableFormLayout.js";
 
 interface Hobbie {
   id: string;
   hobbie: string;
+}
+
+interface UserData {
+  hobbies?: Hobbie[];
 }
 
 const InterestSectionForm: React.FC = () => {
@@ -27,9 +31,9 @@ const InterestSectionForm: React.FC = () => {
   };
 
   const handleSave = () => {
-    setUserData((prev) => {
+    setUserData((prev: UserData) => {
       const existingHobbieIndex = prev.hobbies?.findIndex(
-        (hobbie) => hobbie.id === interestData.id,
+        (hobbie: Hobbie) => hobbie.id === interestData.id,
       );
 
       // Update existing or add new
@@ -53,10 +57,10 @@ const InterestSectionForm: React.FC = () => {
   };
 
   const handleDelete = () => {
-    setUserData((prev) => ({
+    setUserData((prev: UserData) => ({
       ...prev,
       hobbies: (prev.hobbies || []).filter(
-        (hobbie) => hobbie.id !== interestData.id,
+        (hobbie: Hobbie) => hobbie.id !== interestData.id,
       ),
     }));
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { FaEarthAfrica, FaEnvelope, FaMobile } from "react-icons/fa6";
-import { useGlobalContext } from "../context/GlobalContext";
+import { useGlobalContext } from "../context/GlobalContext.js";
 
 const Model2 = () => {
   const { userData } = useGlobalContext();

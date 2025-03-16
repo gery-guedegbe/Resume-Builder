@@ -2,7 +2,7 @@ import React, { useRef, useState, RefObject } from "react";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { ModelsData } from "../constant/index";
+import { ModelsData } from "../constant/index.js";
 
 const Carrousel: React.FC = () => {
   const carouselRef: RefObject<HTMLDivElement> = useRef(null);

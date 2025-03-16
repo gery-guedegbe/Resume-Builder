@@ -1,8 +1,8 @@
 import React from "react";
-import { useFormContext } from "../../../../context/FormContext";
-import FormLayout from "../../../../components/FormLayout";
+import { useFormContext } from "../../../../context/FormContext.js";
+import FormLayout from "../../../../components/FormLayout.js";
 import { FiUser } from "react-icons/fi";
-import { useGlobalContext } from "../../../../context/GlobalContext";
+import { useGlobalContext } from "../../../../context/GlobalContext.js";
 
 const ProfileSectionView: React.FC = () => {
   const { setIsEditing, setEditingData } = useFormContext();

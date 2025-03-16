@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { TbEdit, TbCheck } from "react-icons/tb";
 import { RiFileDownloadFill } from "react-icons/ri";
 import { IoArrowBack } from "react-icons/io5";
-import { downloadPdf } from "../utils/downloadPdf";
+import { downloadPdf } from "../utils/downloadPdf.js";
 import { useNavigate } from "react-router-dom";
 
 const EditableDocumentName = () => {

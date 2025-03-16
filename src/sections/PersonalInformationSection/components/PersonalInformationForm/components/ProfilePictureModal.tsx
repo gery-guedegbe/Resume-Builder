@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import Cropper from "react-cropper";
+import { Cropper } from "react-cropper";
 import "cropperjs/dist/cropper.css";
 import { FaCheck } from "react-icons/fa6";
 import { MdOutlineDelete } from "react-icons/md";

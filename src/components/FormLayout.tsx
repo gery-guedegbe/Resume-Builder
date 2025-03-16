@@ -2,7 +2,7 @@ import React, { useState, ReactNode } from "react";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { IconType } from "react-icons";
 import { FaPlus } from "react-icons/fa6";
-import { useFormContext } from "../context/FormContext";
+import { useFormContext } from "../context/FormContext.js";
 import { motion } from "framer-motion";
 
 interface FormSectionProps {

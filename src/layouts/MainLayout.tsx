@@ -1,6 +1,6 @@
 import React from "react";
-import FormsLayout from "./FormsLayout";
-import PreviewCV from "../pages/PreviewCV";
+import FormsLayout from "./FormsLayout.js";
+import PreviewCV from "../pages/PreviewCV.js";
 
 const MainLayout = () => {
   return (

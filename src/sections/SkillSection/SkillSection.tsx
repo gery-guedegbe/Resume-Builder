@@ -1,7 +1,7 @@
 import React from "react";
-import { useFormContext } from "../../context/FormContext";
-import SkillSectionView from "./components/SkillSectionView/SkillSectionView";
-import SkillSectionForm from "./components/SkillSectionForm/SkillSectionForm";
+import { useFormContext } from "../../context/FormContext.js";
+import SkillSectionView from "./components/SkillSectionView/SkillSectionView.js";
+import SkillSectionForm from "./components/SkillSectionForm/SkillSectionForm.js";
 
 const SkillSection = () => {
   const { isEditing } = useFormContext();

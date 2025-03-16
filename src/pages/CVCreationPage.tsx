@@ -2,9 +2,9 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import Model1 from "../Models/Model1";
-import Model2 from "../Models/Model2";
-import Model3 from "../Models/Model3";
+import Model1 from "../Models/Model1.js";
+import Model2 from "../Models/Model2.js";
+import Model3 from "../Models/Model3.js";
 
 const CVCreationPage: React.FC = () => {
   const location = useLocation();
