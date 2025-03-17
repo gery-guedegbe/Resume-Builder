@@ -35,7 +35,7 @@ const ProfileSectionForm: React.FC = () => {
     }));
 
     setEditingData(null);
-    setIsEditing((prev: Record<string, boolean>) => ({
+    setIsEditing((prev) => ({
       ...prev,
       summary: false,
     }));
@@ -43,7 +43,7 @@ const ProfileSectionForm: React.FC = () => {
 
   const handleCancel = () => {
     setEditingData(null);
-    setIsEditing((prev: Record<string, boolean>) => ({
+    setIsEditing((prev) => ({
       ...prev,
       summary: false,
     }));
@@ -55,7 +55,7 @@ const ProfileSectionForm: React.FC = () => {
       summary: "", // Efface complètement le résumé
     }));
     setEditingData(null);
-    setIsEditing((prev: Record<string, boolean>) => ({
+    setIsEditing((prev) => ({
       ...prev,
       summary: false,
     }));

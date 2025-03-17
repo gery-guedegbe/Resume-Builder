@@ -1,7 +1,7 @@
 import React from "react";
-import { useFormContext } from "../../context/FormContext";
-import ProfessionalExperienceForm from "./components/ProfessionalExperienceForm/ProfessionalExperienceForm";
-import ProfessionalExperienceView from "./components/ProfessionalExperienceView/ProfessionalExperienceView";
+import { useFormContext } from "../../context/FormContext.js";
+import ProfessionalExperienceForm from "./components/ProfessionalExperienceForm/ProfessionalExperienceForm.js";
+import ProfessionalExperienceView from "./components/ProfessionalExperienceView/ProfessionalExperienceView.js";
 
 const ProfessionalExperienceSection: React.FC = () => {
   const { isEditing } = useFormContext();

@@ -1,6 +1,18 @@
 import React, { createContext, useContext, useState } from "react";
 import { UserData } from "../types/userDataTypes.js";
 
+type EditingDataType =
+  | Partial<UserData>
+  | UserData["education"][number]
+  | UserData["skills"][number]
+  | UserData["languages"][number]
+  | UserData["experience"][number]
+  | UserData["certifications"][number]
+  | UserData["projects"][number]
+  | UserData["hobbies"][number]
+  | UserData["references"][number]
+  | null;
+
 // Définir le type pour FormContext
 type FormContextType = {
   currentSection: keyof UserData;
@@ -9,10 +21,8 @@ type FormContextType = {
   setIsEditing: React.Dispatch<
     React.SetStateAction<Record<keyof UserData, boolean>>
   >;
-  editingData: Partial<UserData> | null;
-  setEditingData: React.Dispatch<
-    React.SetStateAction<Partial<UserData> | null>
-  >;
+  editingData: EditingDataType;
+  setEditingData: React.Dispatch<React.SetStateAction<EditingDataType>>;
 };
 
 // Créer le contexte
@@ -39,9 +49,7 @@ export const FormProvider: React.FC<{ children: React.ReactNode }> = ({
     references: false,
   });
 
-  const [editingData, setEditingData] = useState<Partial<UserData> | null>(
-    null,
-  );
+  const [editingData, setEditingData] = useState<EditingDataType>(null);
 
   return (
     <FormContext.Provider

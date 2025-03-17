@@ -10,6 +10,7 @@ import {
   Droppable,
   DropResult,
 } from "react-beautiful-dnd";
+import { UserData } from "../../../../types/userDataTypes.js";
 
 interface Education {
   id: string;
@@ -22,10 +23,6 @@ interface Education {
   achievements: string;
 }
 
-interface UserData {
-  education?: Education[];
-}
-
 const EducationSectionView = () => {
   const { setIsEditing, setEditingData } = useFormContext();
   const { userData, setUserData } = useGlobalContext();
@@ -36,13 +33,13 @@ const EducationSectionView = () => {
     const reorderedEducation = Array.from(userData.education);
     const [removed] = reorderedEducation.splice(result.source.index, 1);
     reorderedEducation.splice(result.destination.index, 0, removed);
-    setUserData((prev: UserData) => ({
+    setUserData((prev) => ({
       ...prev,
       education: reorderedEducation,
     }));
   };
 
-  const handleEditEducation = (education: Education) => {
+  const handleEditEducation = (education: UserData["education"][number]) => {
     setEditingData(education);
     setIsEditing((prev) => ({ ...prev, education: true }));
   };

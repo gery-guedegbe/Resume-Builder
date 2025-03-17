@@ -17,10 +17,6 @@ interface Experience {
   responsibilities: string;
 }
 
-interface UserData {
-  experience?: Experience[];
-}
-
 const ProfessionalExperienceForm: React.FC = () => {
   const { setIsEditing, editingData } = useFormContext();
 
@@ -60,7 +56,7 @@ const ProfessionalExperienceForm: React.FC = () => {
   const handleSave = () => {
     const responsibilities = extractEditorContent(editorState);
 
-    setUserData((prev: UserData) => {
+    setUserData((prev) => {
       const experiences = prev.experience ?? []; // 🔹 Définit une valeur par défaut vide si undefined
 
       const isExisting = experiences.some(
@@ -89,7 +85,7 @@ const ProfessionalExperienceForm: React.FC = () => {
   };
 
   const handleDelete = () => {
-    setUserData((prev: UserData) => {
+    setUserData((prev) => {
       const updatedExperience = prev.experience
         ? prev.experience.filter((exp) => exp.id !== professionalExperience.id)
         : [];

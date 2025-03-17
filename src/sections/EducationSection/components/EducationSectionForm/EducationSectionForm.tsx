@@ -17,10 +17,6 @@ interface Education {
   achievements: string;
 }
 
-interface UserData {
-  education?: Education[];
-}
-
 const EducationSectionForm: React.FC = () => {
   const { setIsEditing, editingData } = useFormContext();
   const { userData, setUserData } = useGlobalContext();
@@ -34,7 +30,7 @@ const EducationSectionForm: React.FC = () => {
     location: "",
     country: "",
     achievements: "",
-    ...editingData,
+    ...(editingData && "id" in editingData ? (editingData as Education) : {}),
   });
 
   const initialContent = ContentState.createFromText(
@@ -57,16 +53,16 @@ const EducationSectionForm: React.FC = () => {
   const handleSave = () => {
     const achievements = extractEditorContent(editorState);
 
-    setUserData((prev: UserData) => {
-      const existingEducation = prev.education || [];
+    setUserData((prev) => {
+      const existingEducation = prev.education ?? []; // 🔹 Assure que prev.education n'est jamais undefined
       const isEditingExisting = existingEducation.some(
-        (edu: Education) => edu.id === educationData.id,
+        (edu) => edu.id === educationData.id,
       );
 
       return {
-        ...prev,
+        ...prev, // 🔹 Garde toutes les autres données de UserData
         education: isEditingExisting
-          ? existingEducation.map((edu: Education) =>
+          ? existingEducation.map((edu) =>
               edu.id === educationData.id
                 ? { ...educationData, achievements }
                 : edu,
@@ -83,10 +79,10 @@ const EducationSectionForm: React.FC = () => {
   };
 
   const handleDelete = () => {
-    setUserData((prev: UserData) => ({
+    setUserData((prev) => ({
       ...prev,
       education: (prev.education || []).filter(
-        (edu: Education) => edu.id !== educationData.id,
+        (edu) => edu.id !== educationData.id,
       ),
     }));
 

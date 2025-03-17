@@ -9,10 +9,6 @@ interface Hobbie {
   hobbie: string;
 }
 
-interface UserData {
-  hobbies?: Hobbie[];
-}
-
 const InterestSectionForm: React.FC = () => {
   const { setIsEditing, editingData } = useFormContext();
   const { userData, setUserData } = useGlobalContext();
@@ -31,7 +27,7 @@ const InterestSectionForm: React.FC = () => {
   };
 
   const handleSave = () => {
-    setUserData((prev: UserData) => {
+    setUserData((prev) => {
       const existingHobbieIndex = prev.hobbies?.findIndex(
         (hobbie: Hobbie) => hobbie.id === interestData.id,
       );
@@ -57,7 +53,7 @@ const InterestSectionForm: React.FC = () => {
   };
 
   const handleDelete = () => {
-    setUserData((prev: UserData) => ({
+    setUserData((prev) => ({
       ...prev,
       hobbies: (prev.hobbies || []).filter(
         (hobbie: Hobbie) => hobbie.id !== interestData.id,

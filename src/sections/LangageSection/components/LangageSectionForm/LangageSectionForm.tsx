@@ -11,10 +11,6 @@ interface Language {
   numericValue: number;
 }
 
-interface UserData {
-  languages?: Language[];
-}
-
 const LangageSectionForm: React.FC = () => {
   const { setIsEditing, editingData } = useFormContext();
   const { userData, setUserData } = useGlobalContext();
@@ -47,7 +43,7 @@ const LangageSectionForm: React.FC = () => {
   };
 
   const handleSave = () => {
-    setUserData((prev: UserData) => {
+    setUserData((prev) => {
       const existingLanguages = prev.languages || [];
       const isEditing = !!editingData;
 
@@ -74,7 +70,7 @@ const LangageSectionForm: React.FC = () => {
   };
 
   const handleDelete = () => {
-    setUserData((prev: UserData) => ({
+    setUserData((prev) => ({
       ...prev,
       languages: (prev.languages || []).filter(
         (lang) => lang.id !== languageData.id,

@@ -18,10 +18,6 @@ interface Skill {
   numericValue: number;
 }
 
-interface UserData {
-  skills?: Skill[];
-}
-
 const SkillSectionView = () => {
   const { setIsEditing, setEditingData } = useFormContext();
   const { userData, setUserData } = useGlobalContext();
@@ -32,7 +28,7 @@ const SkillSectionView = () => {
     const reorderedSkill = Array.from(userData.skills);
     const [removed] = reorderedSkill.splice(result.source.index, 1);
     reorderedSkill.splice(result.destination.index, 0, removed);
-    setUserData((prev: UserData) => ({ ...prev, skills: reorderedSkill }));
+    setUserData((prev) => ({ ...prev, skills: reorderedSkill }));
   };
 
   const handleEditSkills = (skill: Skill) => {

@@ -11,10 +11,6 @@ interface Skill {
   numericValue: number;
 }
 
-interface UserData {
-  skills?: Skill[];
-}
-
 const SkillSectionForm: React.FC = () => {
   const { setIsEditing, editingData } = useFormContext();
   const { userData, setUserData } = useGlobalContext();
@@ -53,7 +49,7 @@ const SkillSectionForm: React.FC = () => {
   };
 
   const handleSave = () => {
-    setUserData((prev: UserData) => {
+    setUserData((prev) => {
       const existingSkills = prev.skills || [];
       const updatedSkills = existingSkills.map((skill) =>
         skill.id === skillData.id ? { ...skill, ...skillData } : skill,
@@ -76,7 +72,7 @@ const SkillSectionForm: React.FC = () => {
   };
 
   const handleDelete = () => {
-    setUserData((prev: UserData) => ({
+    setUserData((prev) => ({
       ...prev,
       skills: (prev.skills || []).filter((skill) => skill.id !== skillData.id),
     }));

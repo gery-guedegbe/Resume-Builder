@@ -1,16 +1,22 @@
 import React from "react";
-import FormLayout from "../../../../components/FormLayout";
+import FormLayout from "../../../../components/FormLayout.js";
 import { MdWorkOutline } from "react-icons/md";
 import { RxDragHandleDots2 } from "react-icons/rx";
-import { useGlobalContext } from "../../../../context/GlobalContext";
-import { useFormContext } from "../../../../context/FormContext";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { useGlobalContext } from "../../../../context/GlobalContext.js";
+import { useFormContext } from "../../../../context/FormContext.js";
+import {
+  DragDropContext,
+  Draggable,
+  Droppable,
+  DropResult,
+} from "react-beautiful-dnd";
+import { UserData } from "../../../../types/userDataTypes.js";
 
 const ProfessionalExperienceView: React.FC = () => {
   const { setIsEditing, setEditingData } = useFormContext();
   const { userData, setUserData } = useGlobalContext();
 
-  const handleDragEnd = (result: any) => {
+  const handleDragEnd = (result: DropResult) => {
     if (!result.destination) return;
 
     const reorderedExperiences = Array.from(userData.experience);
@@ -19,7 +25,7 @@ const ProfessionalExperienceView: React.FC = () => {
     setUserData((prev) => ({ ...prev, experiences: reorderedExperiences }));
   };
 
-  const handleEditExperience = (experience: any) => {
+  const handleEditExperience = (experience: UserData["experience"][number]) => {
     setEditingData(experience);
     setIsEditing((prev) => ({ ...prev, experience: true }));
   };

@@ -10,16 +10,13 @@ import {
   Droppable,
   DropResult,
 } from "react-beautiful-dnd";
+import { UserData } from "../../../../types/userDataTypes.js";
 
 interface Language {
   id: string;
   language: string;
   level: string;
   numericValue: number;
-}
-
-interface UserData {
-  languages?: Language[];
 }
 
 const LangageSectionView = () => {
@@ -32,13 +29,13 @@ const LangageSectionView = () => {
     const reorderedLanguages = Array.from(userData.languages);
     const [removed] = reorderedLanguages.splice(result.source.index, 1);
     reorderedLanguages.splice(result.destination.index, 0, removed);
-    setUserData((prev: UserData) => ({
+    setUserData((prev) => ({
       ...prev,
       languages: reorderedLanguages,
     }));
   };
 
-  const handleEditLanguages = (languages: Language) => {
+  const handleEditLanguages = (languages: UserData["languages"][number]) => {
     setEditingData(languages);
     setIsEditing((prev) => ({ ...prev, languages: true }));
   };
