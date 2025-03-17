@@ -1,4 +1,4 @@
-import * as html2canvas from "html2canvas";
+import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 
 /**
@@ -6,11 +6,6 @@ import { jsPDF } from "jspdf";
  * @param {string} elementId - ID de l'élément HTML à convertir en PDF.
  * @param {string} fileName - Nom du fichier PDF à générer.
  */
-
-const html2canvasFunc = html2canvas as unknown as (
-  element: HTMLElement,
-  options?: any,
-) => Promise<HTMLCanvasElement>;
 
 export const downloadPdf = async (elementId: string, fileName: string) => {
   const element = document.getElementById(elementId);
@@ -22,8 +17,8 @@ export const downloadPdf = async (elementId: string, fileName: string) => {
 
   try {
     // Capture du contenu en canvas avec une haute résolution
-    const canvas = await html2canvasFunc(element, {
-      scale: 3,
+    const canvas = await html2canvas(element, {
+      scale: 3, // Augmente la qualité
       useCORS: true,
     });
 
